@@ -51,6 +51,13 @@ public interface EmployeeMapper {
     @Select("select * from employee where id = #{id}")
     Employee getById(Long id);
 
-    @Update("update employee set password = #{newPassword} where id = #{empId}")
-    void editPassword(Long empId, String newPassword);
+
+    /**
+     * 修改密码
+     * @param empId
+     * @param oldPassword
+     * @param newPassword
+     */
+    @Update("update employee set password = #{newPassword} where id = #{empId} and password = #{oldPassword}")
+    void editPassword(Long empId, String oldPassword, String newPassword);
 }
